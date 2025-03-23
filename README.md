@@ -11,8 +11,8 @@ A Model Context Protocol (MCP) server implementation that can browse the web, pe
 
 - "google_search" tool that performs Google searches and returns relevant links
 - "browse_web" tool that allows browsing websites, clicking elements, and extracting content
-- "code_interpreter" tool that allows reading, writing, and executing code in a sandbox environment
-- "bash_tool" tool that allows running shell commands in the sandbox directory
+- "code_interpreter" tool that allows reading, writing, and executing code in an isolated directory
+- "bash_tool" tool that allows running sanity-checked shell commands in the isolated directory
 
 ## Using with Claude for Desktop
 
@@ -65,17 +65,17 @@ Interacts with a web browser to navigate websites and extract information. Suppo
 
 ### code_interpreter
 
-Allows reading, writing, and executing code files in a sandboxed environment. Supported actions:
+Allows reading, writing, and executing code files in an isolated directory. Supported actions:
 - `read`: Read the contents of a file
 - `write`: Write content to a file
 - `execute`: Execute a file or code snippet
-- `list`: List files in the sandbox
+- `list`: List files in the isolated directory
 
 Supports multiple programming languages including Python, JavaScript (Node.js), Bash, Ruby, Perl, and R.
 
 ### bash_tool
 
-Executes bash commands in the sandbox directory. Features:
+Executes bash commands in the isolated directory. Features:
 - Run commands in foreground or background mode
 - Start web servers and other long-running processes
 - Install packages and dependencies
@@ -85,7 +85,7 @@ Executes bash commands in the sandbox directory. Features:
 
 The following environment variables can be configured:
 
-- `SANDBOX_DIR`: Path to the sandbox directory (default: `~/manus-sandbox`)
+- `SANDBOX_DIR`: Path to the isolated directory (default: `~/manus-sandbox`)
 - `GLOBAL_TIMEOUT`: Global timeout for all operations in seconds (default: 60)
 - `BROWSER_HEADLESS`: Whether to run the browser in headless mode (default: false)
 - `GOOGLE_SEARCH_MAX_RESULTS`: Maximum number of search results to return (default: 10)
